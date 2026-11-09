@@ -339,3 +339,79 @@
 @media (prefers-reduced-motion: reduce) {
   *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
 }
+
+/* MV official mobile header v2: larger logo and company name */
+@media screen {
+  .brand.brand-official {
+    box-sizing: border-box;
+    height: 218px;
+    min-height: 218px;
+    padding: 10px 10px 13px;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 4px;
+  }
+  .brand-logo-official {
+    flex: 0 0 auto;
+    width: 100%;
+    height: 178px;
+    max-height: 178px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background: transparent;
+    box-shadow: none;
+    border: 0;
+    overflow: visible;
+  }
+  .brand-logo-official img {
+    width: 100%;
+    max-width: 246px;
+    height: 100%;
+    object-fit: contain;
+    object-position: center;
+    image-rendering: auto;
+  }
+  .brand.brand-official::after {
+    content: "MV TRANSPORTES E LOGÍSTICA";
+    display: block;
+    width: 100%;
+    color: #24152E;
+    font-family: Inter, Arial, sans-serif;
+    font-size: 10px;
+    font-weight: 800;
+    line-height: 1.25;
+    letter-spacing: .85px;
+    text-align: center;
+    white-space: nowrap;
+  }
+  .brand.brand-official .close-side {
+    top: 6px;
+    right: 7px;
+    width: 32px;
+    height: 32px;
+    background: rgb(245 246 248 / 75%);
+    border-radius: 9px;
+  }
+  .auth-logo-official img {
+    width: min(100%, 310px);
+    height: 138px;
+    image-rendering: auto;
+  }
+  @media (max-width: 800px) {
+    .brand.brand-official {
+      height: 213px;
+      min-height: 213px;
+      padding: 8px 8px 11px;
+    }
+    .brand-logo-official {
+      height: 174px;
+      max-height: 174px;
+    }
+    .brand-logo-official img {
+      max-width: 246px;
+      height: 100%;
+    }
+  }
+}
