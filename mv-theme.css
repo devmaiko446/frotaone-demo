@@ -1,0 +1,341 @@
+/*
+ * MV TRANSPORTES & LOGÍSTICA / FROTAONE — portable visual theme, v1
+ * Load LAST, after every base/component stylesheet. No imports, assets or JS.
+ * Source of truth: this file. Existing business classes/behaviour stay intact.
+ * Brand != status: purple navigates, gold acts; green/amber/red/blue inform.
+ * Print output is deliberately excluded from screen overrides.
+ */
+:root {
+  --mv-canvas: #F2F3F6;
+  --mv-panel: #FFFFFF;
+  --mv-ink: #1C1B21;
+  --mv-muted: #656A75;
+  --mv-border: #DDE0E7;
+  --mv-black: #101015;
+  --mv-silver: #DEE0E8;
+  --mv-ice: #F5F6F8;
+  --mv-gold: #FFD21A;
+  --mv-gold-hover: #FFE300;
+  --mv-gold-edge: #FFCF00;
+  --mv-purple: #6D2494;
+  --mv-purple-deep: #510078;
+  --mv-purple-hover: #6A139A;
+  --mv-purple-soft: #F3EBF8;
+  --mv-nav-hover: #241A30;
+  --mv-nav-active: #3B174B;
+  --mv-nav-text: #DEE0E8;
+  --mv-nav-muted: #B4B5C2;
+  --mv-success: #176344;
+  --mv-success-bg: #EAF6EF;
+  --mv-success-border: #B4D8C2;
+  --mv-warning: #795008;
+  --mv-warning-bg: #FFF5DF;
+  --mv-warning-border: #E5CD94;
+  --mv-danger: #AA302C;
+  --mv-danger-bg: #FFF0EF;
+  --mv-danger-border: #E8B6B3;
+  --mv-info: #205D9B;
+  --mv-info-bg: #EDF4FC;
+  --mv-info-border: #BCD1E8;
+  --mv-radius: 14px;
+  --mv-shadow: 0 3px 12px rgb(16 16 21 / 4%);
+  --mv-shadow-raised: 0 7px 22px rgb(16 16 21 / 7%);
+  --mv-shadow-modal: 0 24px 70px rgb(16 16 21 / 22%);
+  --mv-chrome: linear-gradient(120deg, #F5F6F8 0%, #DEE0E8 45%, #ECEEF3 72%, #DEE0E8 100%);
+  --mv-overlay: rgb(16 16 21 / 65%);
+  /* Bridge original FrotaOne tokens and any existing shadcn controls. */
+  --ink: var(--mv-ink); --muted: var(--mv-muted); --quiet: var(--mv-muted);
+  --border: var(--mv-border); --paper: var(--mv-panel); --surface: var(--mv-canvas);
+  --nav: var(--mv-black); --nav-light: var(--mv-nav-hover); --radius: var(--mv-radius);
+  --teal: var(--mv-purple); --teal-dark: var(--mv-purple-deep); --teal-light: var(--mv-purple-soft);
+  --background: var(--mv-canvas); --foreground: var(--mv-ink);
+  --card: var(--mv-panel); --card-foreground: var(--mv-ink);
+  --popover: var(--mv-panel); --popover-foreground: var(--mv-ink);
+  --primary: var(--mv-gold); --primary-foreground: var(--mv-black);
+  --secondary: var(--mv-ice); --secondary-foreground: var(--mv-ink);
+  --muted-foreground: var(--mv-muted); --accent: var(--mv-purple-soft);
+  --accent-foreground: var(--mv-purple); --destructive: var(--mv-danger);
+  --ring: var(--mv-gold); --input: var(--mv-border);
+}
+/* Optional class-based dark mode. No new toggle or state is introduced. */
+:root.dark, .dark {
+  --mv-canvas: #17171E; --mv-panel: #21212B; --mv-ink: #F5F6F8;
+  --mv-muted: #B4B5C2; --mv-border: #41414F; --mv-ice: #2A2A35;
+  --mv-purple: #CEA2EA; --mv-purple-deep: #E4C5F7; --mv-purple-soft: #35233F;
+  --mv-success: #9FE1B8; --mv-success-bg: #173426; --mv-success-border: #3E6B50;
+  --mv-warning: #F2CF81; --mv-warning-bg: #382D16; --mv-warning-border: #796339;
+  --mv-danger: #FFB2AC; --mv-danger-bg: #3E2123; --mv-danger-border: #89504D;
+  --mv-info: #ACD0FF; --mv-info-bg: #1D3048; --mv-info-border: #496B94;
+}
+@media screen {
+  html, body { background: var(--mv-canvas); color: var(--mv-ink); font-family: Inter, ui-sans-serif, system-ui, sans-serif; }
+  .app-shell *, .auth-stage *, .loading-screen *, .modal-backdrop * { letter-spacing: 0; }
+  ::selection { background: var(--mv-gold); color: var(--mv-black); }
+  .app-shell, .main-area, .workspace { min-width: 0; }
+  .workspace { padding-top: 32px; }
+  .sidebar { background: var(--mv-black); color: var(--mv-nav-text); }
+  /* Full-width silver chrome stage, NOT a plate on the image. */
+  .brand.brand-official { width: 100%; height: 136px; min-height: 136px; padding: 12px 18px; background: var(--mv-chrome); border: 0; border-bottom: 1px solid var(--mv-silver); }
+  .brand-logo-official, .auth-logo-official { background: transparent; border: 0; box-shadow: none; border-radius: 0; overflow: visible; padding: 0; clip-path: none; }
+  .brand-logo-official { height: 110px; }
+  .brand-logo-official img { width: 100%; height: 100%; max-width: 196px; object-fit: contain; filter: none; }
+  .auth-logo-official img { object-fit: contain; filter: none; }
+  .brand.brand-official .close-side { background: transparent; border: 0; box-shadow: none; color: var(--mv-black); right: 6px; top: 5px; }
+  .brand.brand-official .close-side:hover { background: var(--mv-silver); }
+  .sidebar-scroll { padding: 6px 12px 16px; scrollbar-color: var(--mv-nav-active) transparent; }
+  .nav-group { margin: 17px 0; }
+  .nav-group p { color: var(--mv-nav-muted); font-size: 10px; font-weight: 700; margin-bottom: 8px; }
+  .sidebar .nav-button { position: relative; color: var(--mv-nav-text); padding: 11px 13px; gap: 11px; border-radius: 9px; font-size: 12px; min-height: 44px; }
+  .sidebar .nav-button:hover { background: var(--mv-nav-hover); color: var(--mv-ice); }
+  .sidebar .nav-button.selected { background: var(--mv-nav-active); color: var(--mv-gold); }
+  .sidebar .nav-button.selected::before { left: 0; top: 12px; bottom: 12px; height: auto; width: 3px; background: var(--mv-gold); }
+  .sidebar .nav-button.selected span { color: var(--mv-ice); }
+  .sidebar-footer { border-color: var(--mv-nav-hover); }
+  .sidebar-footer strong { color: var(--mv-nav-text); }
+  .sidebar-footer span { color: var(--mv-nav-muted); }
+  .storage-dot { background: var(--mv-gold); box-shadow: none; }
+  .topbar { background: var(--mv-panel); border-top: 2px solid var(--mv-gold); border-bottom-color: var(--mv-border); height: 76px; }
+  .breadcrumbs { color: var(--mv-muted); }
+  .breadcrumbs strong { color: var(--mv-ink); }
+  .user-avatar { background: var(--mv-purple-soft); color: var(--mv-purple); }
+  .period-input { background: var(--mv-ice); color: var(--mv-muted); border-color: var(--mv-border); min-height: 44px; }
+  .period-input input { color: var(--mv-ink); }
+  .page-title h1 { color: var(--mv-ink); font-size: 30px; line-height: 1.2; }
+  .page-title p, .eyebrow, .workspace-footer { color: var(--mv-muted); }
+  .page-title { margin-bottom: 25px; }
+  /* Visual surfaces: preserve grids, records, overflow and information density. */
+  .kpi, .panel, .detail-panel, .plan-card, .contract-card, .tire-card,
+  .daily-center, .axle-map, .dash-metric, .dash-surface, .nf-intake-card,
+  .nf-editor-card, .nf-invoice-row, .nf-stock-item, .direct-ledger-list,
+  .direct-posting, .third-ops-panel, .billing-contract-card, .billing-editor,
+  .billing-finance-agenda, .invoice-documents, .monthly-table-wrap,
+  .monthly-summary > div, .nf-summary-strip > div, .nf-stock-kpis > div,
+  .direct-revenue-kpis > div, .third-ops-kpis article, .tires-summary > div,
+  .billing-titles-kpis > div, .billing-projects-summary > div,
+  .billing-financial-strip > :is(div, button), .billing-due-kpis > button {
+    background: var(--mv-panel); border-color: var(--mv-border); border-radius: var(--mv-radius); box-shadow: var(--mv-shadow);
+  }
+  .kpi:hover, .panel:hover { box-shadow: var(--mv-shadow); transform: none; }
+  .kpi { position: relative; padding: 22px; }
+  .kpi-head, .dash-metric-label { color: var(--mv-muted); font-size: 12px; line-height: 1.5; }
+  .kpi-head svg, .dash-metric-label svg { color: var(--mv-purple); }
+  .kpi strong { color: var(--mv-ink); font-size: 27px; line-height: 1.25; margin-top: 16px; font-variant-numeric: tabular-nums; }
+  .kpi p, .dash-metric p { color: var(--mv-muted); font-size: 12px; }
+  .dash-metric::before { background: var(--mv-purple); }
+  .dash-metric.positive::before { background: var(--mv-success); }
+  .dash-metric.negative::before { background: var(--mv-danger); }
+  /* General type roles use real text elements, never global status recolouring. */
+  :is(.workspace, .modal, .auth-card) :is(h1, h2, h3, h4, legend) { color: var(--mv-ink); }
+  :is(.workspace, .modal, .auth-card) :is(p, small, label) { color: var(--mv-muted); }
+  :is(.workspace, .modal, .auth-card) strong { color: var(--mv-ink); }
+  .section-top p, .panel-head p { font-size: 12px; }
+  .btn { border-radius: 9px; min-height: 44px; white-space: normal; line-height: 1.4; transition: background-color 150ms, border-color 150ms, box-shadow 150ms; }
+  .btn:active { transform: none; }
+  .btn.primary { background: var(--mv-gold); color: var(--mv-black); border-color: var(--mv-gold); box-shadow: none; }
+  .btn.primary:hover:not(:disabled) { background: var(--mv-gold-hover); border-color: var(--mv-gold-edge); }
+  .btn.secondary { background: var(--mv-panel); color: var(--mv-ink); border-color: var(--mv-border); }
+  .btn.secondary:hover:not(:disabled) { background: var(--mv-ice); border-color: var(--mv-purple); }
+  .icon-button { color: var(--mv-muted); }
+  .icon-button:hover { background: var(--mv-purple-soft); color: var(--mv-purple); }
+  .text-button, .auth-link, .finance-pulse-link, .dash-panel-link,
+  .template-card-action, .third-vehicle-buttons button, .nf-intake-card a { color: var(--mv-purple); }
+  .text-button:hover, .auth-link:hover, .finance-pulse-link:hover, .dash-panel-link:hover { color: var(--mv-purple-deep); }
+  .tabs { border-color: var(--mv-border); }
+  .tabs button { color: var(--mv-muted); min-height: 44px; }
+  .tabs button.active { color: var(--mv-purple); border-color: var(--mv-purple); background: var(--mv-purple-soft); }
+  .tabs span, .nf-subtabs button span, .billing-tabs span { background: var(--mv-ice); color: var(--mv-muted); }
+  .billing-tabs button, .nf-subtabs button, .direct-filters button, .axle-view-selector button { color: var(--mv-muted); border-color: var(--mv-border); min-height: 44px; }
+  .billing-tabs button, .direct-filters button { background: var(--mv-panel); }
+  .billing-tabs button.active, .nf-subtabs button.active, .direct-filters button.active,
+  .axle-view-selector button.active { background: var(--mv-purple-soft); color: var(--mv-purple); border-color: var(--mv-purple); box-shadow: none; }
+  .nf-subtabs button.active span { background: var(--mv-panel); }
+  .billing-tabs, .nf-subtabs { border-color: var(--mv-border); }
+  .data-table th, .monthly-table thead th { background: var(--mv-ice); color: var(--mv-muted); border-color: var(--mv-border); font-size: 11px; }
+  .data-table td, .monthly-table tbody td { color: var(--mv-ink); border-color: var(--mv-border); }
+  .data-table td strong, .monthly-table td > strong { color: var(--mv-ink); }
+  .data-table td small, .monthly-table td > small { color: var(--mv-muted); }
+  .data-table tbody tr:hover, .monthly-table tbody tr:hover { background: var(--mv-ice); }
+  .data-table tr.selected-row { background: var(--mv-purple-soft); }
+  .data-table :is(td, th).right, .bold-num, .monthly-table input,
+  :is(.dash-metric, .nf-summary-strip, .billing-due-kpis, .direct-revenue-kpis) strong { font-variant-numeric: tabular-nums; }
+  .search-box, .monthly-search, .nf-item-search, .direct-search, .billing-search {
+    background: var(--mv-panel); color: var(--mv-muted); border-color: var(--mv-border); min-height: 44px; min-width: 0;
+  }
+  .app-shell input:not([type=checkbox]):not([type=radio]), .app-shell select, .app-shell textarea,
+  .modal input:not([type=checkbox]):not([type=radio]), .modal select, .modal textarea,
+  .auth-form input, .setup-body input { color: var(--mv-ink); border-color: var(--mv-border); background-color: var(--mv-panel); }
+  :is(.search-box, .monthly-search, .nf-item-search, .direct-search, .billing-search, .period-input) input { background: transparent; }
+  :is(.workspace, .modal, .auth-card) input::placeholder,
+  :is(.workspace, .modal, .auth-card) textarea::placeholder { color: var(--mv-muted); opacity: 1; }
+  :is(button, input, select, textarea) { accent-color: var(--mv-purple); }
+  .field, .nf-field > span, .direct-post-field > label { color: var(--mv-muted); }
+  .modal-backdrop, .mobile-shade { background: var(--mv-overlay); }
+  .modal { background: var(--mv-panel); border: 1px solid var(--mv-border); border-radius: var(--mv-radius); box-shadow: var(--mv-shadow-modal); }
+  .modal-head, .modal-actions, .inspection-fieldset { border-color: var(--mv-border); }
+  .modal-head { background: var(--mv-ice); }
+  .auth-stage, .loading-screen { background: var(--mv-canvas); }
+  .auth-card { background: var(--mv-panel); border-color: var(--mv-border); border-radius: var(--mv-radius); box-shadow: var(--mv-shadow-raised); }
+  .auth-foot { border-color: var(--mv-border); }
+  .auth-admin { color: var(--mv-muted); }
+  .loading-logo, .auth-mark { background: var(--mv-black); color: var(--mv-gold); }
+  /* Neutral operational sub-surfaces, distinct from semantic notices. */
+  .daily-counts button, .vehicle-tabs > div, .vehicle360-financial > div,
+  .vehicle360-actions, .contract-stats, .dash-sub-kpis > div, .dash-mini-status,
+  .dash-attention, .direct-form-head, .direct-owner, .direct-owner-net,
+  .nf-item, .monthly-import, .billing-contract-metrics div, .billing-link-row,
+  .billing-measurement-line, .billing-title-detail > div, .billing-settlement,
+  .billing-source-picker, .billing-projects-list > div, .invoice-documents-summary,
+  .billing-finance-settlement-summary, .signature-widget > div,
+  .frota-3d-selected, .frota-3d-no-selection, .frota-3d-loading, .frota-3d-frame {
+    background: var(--mv-ice); border-color: var(--mv-border); color: var(--mv-ink);
+  }
+  .daily-counts button:hover, .direct-vehicle-row:hover, .vehicle360-list > button:hover,
+  .nf-invoice-row:hover, .dash-leader:hover { background: var(--mv-purple-soft); border-color: var(--mv-purple); }
+  .daily-counts strong, .vehicle-tabs strong, .vehicle360-totals strong,
+  .tires-summary strong, .direct-vehicle-values strong { color: var(--mv-purple); }
+  .daily-counts svg, .vehicle-type, .plan-symbol, .contract-icon, .settings-icon,
+  .tire-icon, .empty-icon, .item-symbol, .nf-method-icon, .nf-document-icon,
+  .nf-stock-icon, .direct-vehicle-glyph, .direct-empty > span, .third-owner-icon,
+  .third-vehicle-icon, .invoice-documents-icon, .billing-contract-top > span,
+  .frota-3d-selected-icon { background: var(--mv-purple-soft); color: var(--mv-purple); }
+  .daily-counts span, .vehicle360-totals span, .vehicle360-list small,
+  .map-chip, .map-legend, .axle-middle span, .axle-middle small { color: var(--mv-muted); }
+  .vehicle360-actions button, .vehicle360-list > button, .direct-vehicle-row,
+  .dash-leader, .nf-allocation, .nf-stock-target, .frota-3d-position,
+  .invoice-documents-file, .signature-widget { background: var(--mv-panel); border-color: var(--mv-border); color: var(--mv-ink); }
+  .direct-vehicle-row.selected { background: var(--mv-purple-soft); box-shadow: inset 3px 0 var(--mv-purple); }
+  .direct-form-head h3 span, .nf-line-badge, .nf-source-pill,
+  .invoice-documents-count, .billing-contract-plates span { background: var(--mv-purple-soft); color: var(--mv-purple); border-color: var(--mv-border); }
+  .nf-intake-card.featured { background: var(--mv-panel); border-color: var(--mv-purple); }
+  .track, .dash-cost-track, .finance-pulse-progress, .direct-progress, .nf-progress { background: var(--mv-border); }
+  .track > div, .finance-pulse-progress > span, .direct-progress > span, .nf-progress > span { background: var(--mv-purple); }
+  .dash-cost-track > span { background: var(--mv-purple) !important; }
+  .dash-category-list > div:nth-child(2n) .dash-cost-track > span { background: var(--mv-info) !important; }
+  .dash-category-list > div:nth-child(3n) .dash-cost-track > span { background: var(--mv-muted) !important; }
+  .finance-pulse { background: var(--mv-panel); border-color: var(--mv-border); border-radius: var(--mv-radius); }
+  .finance-pulse-topline > div { background: var(--mv-ice); border-color: var(--mv-border); }
+  .finance-pulse-chart, .finance-pulse-risk { border-color: var(--mv-border); }
+  .finance-pulse-eyebrow, .direct-eyebrow, .dash-eyebrow { color: var(--mv-purple); }
+  .finance-bar.revenue, .finance-legend i.revenue { background: var(--mv-purple); }
+  .finance-bar.expense, .finance-legend i.expense { background: var(--mv-warning); }
+  /* Existing SVG data series: exact attributes keep each series identifiable.
+     Tooltip/legend colours match; geometry and financial values are untouched. */
+  .dash-chart-area [stroke="#0d9e90"] { stroke: var(--mv-purple); }
+  .dash-chart-area [stroke="#d38a4e"] { stroke: var(--mv-warning); }
+  .dash-chart-area stop[stop-color="#0d9e90"] { stop-color: var(--mv-purple); }
+  .dash-chart-area [stroke="#e4ecee"] { stroke: var(--mv-border); }
+  .dash-chart-area .recharts-cartesian-axis-tick-value { fill: var(--mv-muted); }
+  .dash-chart-area .recharts-legend-item:nth-child(1) :is(.recharts-legend-item-text, svg), .dash-tooltip > div:nth-of-type(1) i { color: var(--mv-purple) !important; }
+  .dash-chart-area .recharts-legend-item:nth-child(1) svg path { fill: var(--mv-purple); stroke: var(--mv-purple); }
+  .dash-chart-area .recharts-legend-item:nth-child(2) .recharts-legend-item-text { color: var(--mv-warning) !important; }
+  .dash-chart-area .recharts-legend-item:nth-child(2) svg path { fill: var(--mv-warning); stroke: var(--mv-warning); }
+  .dash-tooltip > div:nth-of-type(1) i { background: var(--mv-purple) !important; }
+  .dash-tooltip > div:nth-of-type(2) i { background: var(--mv-warning) !important; }
+  /* Silver/black axle schematic; occupied wheels are navigation, not success. */
+  .truck-schematic { background: var(--mv-ice); }
+  .truck-cab { background: var(--mv-chrome); border-color: var(--mv-muted); color: var(--mv-black); box-shadow: none; }
+  .cab-window { background: var(--mv-black); border-color: var(--mv-muted); }
+  .truck-chassis::before { background: var(--mv-silver); border-color: var(--mv-muted); }
+  .axle-middle .axle-line { background: var(--mv-muted); }
+  .axle-middle :is(span, small) { background: var(--mv-silver); color: var(--mv-black); }
+  .wheel { background: var(--mv-panel); border-color: var(--mv-muted); color: var(--mv-muted); }
+  .wheel.occupied { background: var(--mv-nav-active); border-color: var(--mv-purple); color: var(--mv-ice); }
+  .wheel.occupied strong { color: var(--mv-ice); }
+  .wheel:hover { transform: none; box-shadow: none; border-color: var(--mv-purple); }
+  .map-dot.full { background: var(--mv-purple); }
+  .map-dot.empty { background: var(--mv-panel); border-color: var(--mv-muted); }
+  .frota-3d-position.chosen { border-color: var(--mv-purple); background: var(--mv-purple-soft); }
+  .frota-3d-camera, .frota-3d-watermark, .frota-3d-instruction { background: var(--mv-panel); border-color: var(--mv-border); color: var(--mv-muted); }
+  .frota-3d-camera button { color: var(--mv-ink); }
+  .frota-3d-counter { background: var(--mv-black); color: var(--mv-gold); }
+  /* Semantic layer LAST: never brand an error, overdue balance or status gold/purple. */
+  .positive, .monthly-positive, .billing-linked, .third-checked { color: var(--mv-success) !important; }
+  .negative, .monthly-negative, .dash-negative, .direct-red, .third-unpaid,
+  .finance-pulse-topline strong.down, .finance-result-line strong.down,
+  .billing-due-kpis > button.overdue strong, .billing-due-label.overdue { color: var(--mv-danger) !important; }
+  .kpi.good .kpi-head svg, .direct-status.complete { color: var(--mv-success); }
+  .kpi.bad .kpi-head svg { color: var(--mv-danger); }
+  .chip.success, .monthly-status.recorded, .nf-alert.ok, .billing-success,
+  .monthly-success, .invoice-document-notice, .saving-banner, .billing-status,
+  .recent-symbol.revenue { background: var(--mv-success-bg); color: var(--mv-success); border-color: var(--mv-success-border); }
+  .chip.warning, .local-warning, .alert-row, .finance-alert, .dash-pill-warning,
+  .direct-accounting-warning { background: var(--mv-warning-bg); color: var(--mv-warning); border-color: var(--mv-warning-border); }
+  .chip.danger, .nf-alert.error, .billing-error, .monthly-errors, .form-error,
+  .invoice-document-error, .billing-status.overdue, .recent-symbol.expense,
+  .btn.danger-ghost { background: var(--mv-danger-bg); color: var(--mv-danger); border-color: var(--mv-danger-border); }
+  .btn.danger { background: var(--mv-danger); color: var(--mv-panel); }
+  .chip.info, .hint, .nf-info, .monthly-tip, .notification, .billing-hint,
+  .billing-consolidation-note, .direct-footnote { background: var(--mv-info-bg); color: var(--mv-info); border-color: var(--mv-info-border); }
+  .chip.neutral, .monthly-status.pending, .finance-alert.neutral { background: var(--mv-ice); color: var(--mv-muted); border-color: var(--mv-border); }
+  :is(.local-warning, .alert-row, .finance-alert, .dash-pill-warning, .direct-accounting-warning,
+      .nf-alert, .billing-error, .monthly-errors, .form-error, .monthly-success,
+      .billing-success, .notification, .hint, .nf-info, .monthly-tip, .billing-hint,
+      .billing-consolidation-note, .invoice-document-error, .invoice-document-notice)
+      :is(strong, p, small, span, svg, button) { color: inherit; }
+  .billing-due-kpis > button::before { background: var(--mv-silver); }
+  .billing-due-kpis > button.active { background: var(--mv-purple-soft); border-color: var(--mv-purple); }
+  .billing-due-kpis > button.overdue::before { background: var(--mv-danger); }
+  .billing-due-kpis > button.overdue.active { background: var(--mv-danger-bg); border-color: var(--mv-danger); }
+  .billing-delete, .nf-icon-button:hover { color: var(--mv-danger); }
+  .alert-button.has-alerts, .local-warning button { color: var(--mv-warning); }
+  .alert-button span { background: var(--mv-warning); color: var(--mv-warning-bg); }
+  .billing-due-label, .frota-3d-position.installed .frota-3d-pos-state { color: var(--mv-success); }
+  .frota-3d-position.missing { background: var(--mv-warning-bg); border-color: var(--mv-warning-border); }
+  .frota-3d-position.missing .frota-3d-pos-state { color: var(--mv-warning); }
+  /* Two-tone focus: gold remains visible on dark chrome, black edge on light surfaces. */
+  :is(button, a, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--mv-black) !important; outline-offset: 3px !important;
+    box-shadow: 0 0 0 3px var(--mv-gold) !important;
+  }
+  :is(.search-box, .monthly-search, .nf-item-search, .direct-search, .billing-search,
+      .period-input, .monthly-revenue-input):focus-within { outline: 2px solid var(--mv-black); outline-offset: 2px; box-shadow: 0 0 0 2px var(--mv-gold); }
+  .direct-post-field > input:focus { border-color: var(--mv-purple); outline: 2px solid var(--mv-black); outline-offset: 2px; }
+  @media (max-width: 900px) {
+    .sidebar { width: 264px; max-width: calc(100vw - 40px); height: 100dvh; }
+    .sidebar.open { box-shadow: var(--mv-shadow-modal); }
+    .topbar { height: 68px; }
+    .brand.brand-official { height: 128px; min-height: 128px; }
+    .brand-logo-official { height: 104px; }
+    .brand-logo-official img { height: 100%; }
+  }
+  @media (max-width: 650px) {
+    .workspace { padding: 22px 14px; }
+    .page-title h1 { font-size: 26px; }
+    .kpi { padding: 16px 13px; }
+    .kpi strong { font-size: 20px; }
+    .kpi-head { font-size: 11px; }
+    .kpi p { font-size: 11px; }
+    .action-row { flex-wrap: wrap; justify-content: flex-start; max-width: 100%; }
+    .btn { max-width: 100%; overflow-wrap: anywhere; }
+    .topbar { padding: 0 10px; }
+    .topbar-left, .topbar-right { gap: 5px; min-width: 0; }
+    .breadcrumbs { font-size: 10px; }
+    .period-input { padding: 0 5px; }
+    .period-input input { min-width: 100px; max-width: 108px; }
+    .panel, .daily-center { padding: 17px; }
+    .panel.vehicle-360 { padding: 0; }
+    .modal { max-height: 96dvh; border-radius: 14px 14px 0 0; }
+    .modal-head { gap: 10px; }
+    .modal-head h2 { font-size: 20px; overflow-wrap: anywhere; }
+    .modal-actions { flex-wrap: wrap; }
+    .nf-items-fields, .billing-link-fields { grid-template-columns: minmax(0, 1fr); }
+    .nf-item-quantities, .nf-stock-description { min-width: 0; }
+    .nf-editor-footer, .direct-form-actions, .billing-editor-actions { flex-wrap: wrap; }
+    .invoice-documents-file > div:nth-child(2) { min-width: 0; flex-basis: calc(100% - 55px); }
+    .auth-card { padding: 26px 20px; }
+    .workspace-footer { flex-wrap: wrap; font-size: 10px; }
+  }
+  @media (max-width: 360px) {
+    .workspace { padding-inline: 10px; }
+    .breadcrumbs { display: none; }
+    .kpi-grid, .kpi-grid.three { grid-template-columns: minmax(0, 1fr); }
+    .daily-actions, .vehicle360-actions, .billing-measurement-line { grid-template-columns: minmax(0, 1fr); }
+    .daily-actions .btn:last-child { grid-column: auto; }
+    .finance-pulse-subhead, .finance-result-line { flex-wrap: wrap; }
+    .finance-alert-list p { flex-wrap: wrap; }
+    .form-grid { padding: 16px; }
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  *, *::before, *::after { animation: none !important; transition: none !important; scroll-behavior: auto !important; }
+}
