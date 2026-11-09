@@ -35,3 +35,6 @@ Produto operacional de gestão de frota; a interface comunica precisão logísti
 
 ## Observação de publicação
 A demonstração GitHub Pages tem HTML/CSS/JS compilados. Alterações de layout implementadas somente no código-fonte Lovable não serão refletidas automaticamente na página da demonstração; sincronizar CSS/compilados antes de considerar as duas versões equivalentes.
+
+## Integridade do módulo de Pneus (09/11/2026)
+O entrypoint do JavaScript compilado deve carregar **sem query string**. O chunk dinâmico de Pneus/Truck3DScene reimporta o mesmo entrypoint por caminho relativo e precisa compartilhar a mesma instância React. Colocar `?v=...` apenas no `<script type="module">` causa duas instâncias de React e erro de hook #321, deixando o painel em branco. Para versionar a aplicação, publique arquivos com nome hash diferente e atualize o `src`/HTML, sem query string. Simulação com proxy local (HTML de produção sem query) exibiu o mapa 3D e 10 posições, sem exceções de console.
